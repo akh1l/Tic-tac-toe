@@ -10,10 +10,10 @@
 #define OR ||
 char pos[10]={"         "};/* 9 spaces are given so that in the beginning each grid has a blank(space)*/
 int block,n,turn=0;         /*They are declared globally, so that they are available throughout the execution of the program i.e in all different functions*/
-int player1();
-int player2();
-int check();
-int printboard();
+void player1();
+void player2();
+void check();
+void printboard();
 
 
 int main()
@@ -49,7 +49,7 @@ int main()
 	return 0;
 }
 
-int player1()
+void player1()
 {
         printf("\nPlayer 1 Enter the block no:");
 	scanf("%d",&block);
@@ -58,10 +58,9 @@ int player1()
 	{
 		printf("Invalid block\n");   /* if the block number is invalid, the function calls itself again(recursion) so that same player can enter again.*/
 		player1();
-		return ;  /* return is used to come out of the function or else the remaining below conditions are executed*/
 	}
 
-	if(pos[block-1]==' ') /* to check the that the grid has blank space ( if there is 'x' or 'o' already in its place then it cannot be replaced )*/
+	else if(pos[block-1]==' ') /* to check the that the grid has blank space ( if there is 'x' or 'o' already in its place then it cannot be replaced )*/
 	{
 		pos[block-1]='O';
 		printboard();
@@ -74,7 +73,7 @@ int player1()
 
 }
 
-int player2()
+void player2()
 {
         printf("\nPlayer 2 Enter the block no:");
 	scanf("%d",&block);
@@ -83,10 +82,9 @@ int player2()
 	{
 		printf("Invalid block\n");
 		player2();
-		return;
 	}
 
-	if(pos[block-1]==' ')
+	else if(pos[block-1]==' ')
 	{
 		pos[block-1]='X';
 		printboard();
@@ -100,7 +98,7 @@ int player2()
 }
 
 
-int check() 
+void check() 
 {
 	if(
 			((pos[0]==pos[1]) AND (pos[1]==pos[2]) AND (pos[2]=='O')) OR /* first horizontal line*/
@@ -132,7 +130,7 @@ int check()
 			exit(0);
 		}
 }
-int printboard()
+void printboard()
 {
 	system("clear"); /*Used to clear the screen, In windows OS replace "clear" by "cls" */
 	printf("\n");
